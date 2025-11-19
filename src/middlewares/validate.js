@@ -11,6 +11,7 @@ export const validate = (schemas = {}) => (req, _res, next) => {
             path: i.path, message: i.message
         })) ?? null;
         return next({
-            message: 'Validation error', status: 400, code: 'BAD_REQUEST', details: issues });
-}
+            message: 'Validation error', status: 400, code: 'BAD_REQUEST', details: issues
+        });
+    }
 };
