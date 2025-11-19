@@ -24,10 +24,14 @@ export const ThriftStore = database.define("ThriftStore", {
         allowNull: false
     },
 
-    phoneNumber: {
+    uf: {
+        type: DataTypes.STRING(5),
+        allowNull: false
+    },
+
+    phone: {
         type: DataTypes.STRING(100),
         allowNull: false,
-        field: "phone_number"
     },
 
     email: {
