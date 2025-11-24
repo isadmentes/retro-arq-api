@@ -13,7 +13,10 @@ export const ThriftStore = database.define("ThriftStore", {
         type: DataTypes.STRING(100),
         allowNull: false
     },
-
+    description: {
+        type: DataTypes.STRING(200),
+        allowNull: false
+    },
     address: {
         type: DataTypes.STRING(200),
         allowNull: false
@@ -63,13 +66,18 @@ export const ThriftStore = database.define("ThriftStore", {
         field: "social_media"
     },
 
-    figure: {
-        type: DataTypes.STRING(100),
+    images: {
+        type: DataTypes.JSON,
         allowNull: false
     },
 
-    map: {
-        type: DataTypes.STRING(100),
+    latitude: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+    },
+
+    longitude: {
+        type: DataTypes.FLOAT,
         allowNull: false
     },
     categoryId: {
