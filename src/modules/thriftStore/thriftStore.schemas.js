@@ -6,6 +6,10 @@ export const thriftStoreSchemas = {
             .string()
             .min(1, "name is required")
             .maxLength(100, "name is too large"),
+        description: z
+            .string ()
+            .min(1, "name is required")
+            .maxLength(200, "name is too large"),
         address: z
             .string()
             .min(1, "address is required")
@@ -35,21 +39,17 @@ export const thriftStoreSchemas = {
             .min(1, "socialMedia is required")
             .maxLength(50, "socialMedia is wrong"),
         images: z
-            .url()
-            .min(1, "image is required")
-            .maxLength(100, "image is too large"),
+            .array(z.object({
+                imageUrl: z
+                    .url("O 'imageUrl' deve ser uma URL válida.")
+                    .min(1, "O 'imageUrl' não pode ser vazio."),
+                isPrimary: z.boolean(),
+            })).min(1, "O array de imagens não pode ser vazio."),
         latitude: z
-            .float()
-            .min(1, "latitude is required")
-            .maxLength(100, "latitude is too large"),
+            .number("latitude is required"),
         longitude: z
-            .float()
-            .min(1, "longitude is required")
-            .maxLength(100, "longitude is too large"),
-        category: z
-            .string()
-
-
-
+            .number("longitude is required"),
+        categoryId: z
+            .uuid("select any category")
     })
 }

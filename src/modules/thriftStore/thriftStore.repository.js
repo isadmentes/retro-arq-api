@@ -2,12 +2,16 @@ import { Categories } from "../../models/Categories.js"
 import { ThriftStore } from "../../models/ThriftStore.js"
 
 export const makeThriftStoreRepository = () => {
-    const create = async ({ address, categoryId, city, description, email, name, openingHours, phone, socialMedia, uf, website }) => {
-        const thriftStore = ThriftStore.create({
-            address, categoryId, city, description, email, name, openingHours, phone, socialMedia, uf, website
-        })
+    const create = async ({name, description, address, city, uf, phone, email, openingHours, socialMedia, images, latitude, longitude, categoryId}) => {
+
+    const thriftStore = ThriftStore.create({name, description, address, city, uf, phone, email, openingHours, socialMedia, images, latitude, longitude, categoryId})
 
         return thriftStore
+    }
+
+    const list = async ({ q, category }) => {
+        const where = {}
+
     }
 
     const findById = async ({ id }) => {
@@ -18,7 +22,7 @@ export const makeThriftStoreRepository = () => {
                 attributes: ['id', 'name']
             }]
         });
-        
+
         return thriftStore ? thriftStore.toJSON() : null;
     }
 
