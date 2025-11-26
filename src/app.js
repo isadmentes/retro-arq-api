@@ -4,6 +4,7 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { env } from './config/env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { thriftStoreRouter } from './routes/thriftStore.routes.js';
 
 export const createApp = () => {
 
@@ -19,6 +20,8 @@ export const createApp = () => {
     app.get('/health', (_req, res) => res.json({ ok: true }));
 
     // 3) Rotas
+    app.use("/thrift-store", thriftStoreRouter())
+
 
     // 4) Error handler (sempre por último)
     app.use(errorHandler);
