@@ -5,10 +5,10 @@ export const makeThriftStoreController = () => {
 
     const create = async (request, response, next) => {
         try {
-            const { name, description, address, city, uf, phone, email, openingHours, socialMedia, images, latitude, longitude, categoryId } = request.body;
+            const { name, description, address, city, uf, phone, email, openingHours, socialMedia, website, images, latitude, longitude, categoryId } = request.body;
 
             const product = await service.create({
-                name, description, address, city, uf, phone, email, openingHours, socialMedia, images, latitude, longitude, categoryId
+                name, description, address, city, uf, phone, email, openingHours, socialMedia, website, images, latitude, longitude, categoryId
             });
             return response.status(201).json(product);
         } catch (error) {
@@ -27,7 +27,7 @@ export const makeThriftStoreController = () => {
 
     const get = async (request, respons, next) => {
         try {
-            return respons.json(await service.get(Number(request.params.id)));
+            return respons.json(await service.get({ id: request.params.id }));
         }
         catch (err) {
             return next(err);

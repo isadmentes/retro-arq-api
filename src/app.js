@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit';
 import { env } from './config/env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { thriftStoreRouter } from './routes/thriftStore.routes.js';
+import { categoryRouter } from './routes/category.routes.js';
 
 export const createApp = () => {
 
@@ -21,6 +22,7 @@ export const createApp = () => {
 
     // 3) Rotas
     app.use("/thrift-store", thriftStoreRouter())
+    app.use("/category", categoryRouter())
 
 
     // 4) Error handler (sempre por último)

@@ -7,7 +7,7 @@ export const thriftStoreSchemas = {
             .min(1, "name is required")
             .max(100, "name is too large"),
         description: z
-            .string ()
+            .string()
             .min(1, "name is required")
             .max(200, "name is too large"),
         address: z
@@ -33,11 +33,15 @@ export const thriftStoreSchemas = {
         openingHours: z
             .string()
             .min(10, "openingHours is required")
-            .max(50, "openingHours is wrong"),
+            .max(50, "openingHours is too large"),
         socialMedia: z
             .url()
             .min(1, "socialMedia is required")
-            .max(50, "socialMedia is wrong"),
+            .max(100, "socialMedia is too large"),
+        website: z
+            .url()
+            .min(1, "website is required")
+            .max(100, "website is too large"),
         images: z
             .array(z.object({
                 imageUrl: z

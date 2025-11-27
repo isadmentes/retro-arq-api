@@ -3,8 +3,8 @@ import { Categories } from "../../models/Categories.js"
 import { ThriftStore } from "../../models/ThriftStore.js"
 
 export const makeThriftStoreRepository = () => {
-    const create = async ({ name, description, address, city, uf, phone, email, openingHours, socialMedia, images, latitude, longitude, categoryId }) => {
-        const thriftStore = ThriftStore.create({ name, description, address, city, uf, phone, email, openingHours, socialMedia, images, latitude, longitude, categoryId })
+    const create = async ({ name, description, address, city, uf, phone, email, openingHours, socialMedia, website, images, latitude, longitude, categoryId }) => {
+        const thriftStore = ThriftStore.create({ name, description, address, city, uf, phone, email, openingHours, socialMedia, website, images, latitude, longitude, categoryId })
 
         return thriftStore
     }
@@ -46,8 +46,8 @@ export const makeThriftStoreRepository = () => {
     }
 
     const findByEmail = async ({ email }) => {
-        const thriftStore = await ThriftStore.find( {
-            where: email,
+        const thriftStore = await ThriftStore.findOne({
+            where: { email },
             include: [{
                 model: Categories,
                 as: 'category',
@@ -58,5 +58,5 @@ export const makeThriftStoreRepository = () => {
         return thriftStore ? thriftStore.toJSON() : null;
     }
 
-    return { create, list,findByEmail, findById }
+    return { create, list, findByEmail, findById }
 }

@@ -6,14 +6,14 @@ export const makeThriftStoreService = () => {
     const sortable = ['id', 'name', 'createdAt'];
     const dirOk = ['ASC', 'DESC'];
 
-    const create = async ({ name, description, address, city, uf, phone, email, openingHours, socialMedia, images, latitude, longitude, categoryId }) => {
+    const create = async ({ name, description, address, city, uf, phone, email, openingHours, socialMedia, website, images, latitude, longitude, categoryId }) => {
         const exist = await repo.findByEmail({ email })
 
         if (exist) {
             throw new HttpError("Email already in use", 409, "EMAIL_TAKEN")
         }
 
-        const thriftStore = await repo.create({ name, description, address, city, uf, phone, email, openingHours, socialMedia, images, latitude, longitude, categoryId })
+        const thriftStore = await repo.create({ name, description, address, city, uf, phone, email, openingHours, socialMedia, website, images, latitude, longitude, categoryId })
 
         return thriftStore
     }
@@ -26,6 +26,8 @@ export const makeThriftStoreService = () => {
     };
 
     const get = async ({ id }) => {
+        console.log({id})
+
         const found = await repo.findById({ id });
 
         if (!found) throw new HttpError('Thift Store not found', 404, 'NOT_FOUND');
